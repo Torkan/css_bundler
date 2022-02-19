@@ -18,7 +18,7 @@ it into the specified output-file.
 ```elixir
 def deps do
   [
-    {:css_bundler, "~> 0.1.0", runtime: Mix.env() == :dev}
+    {:css_bundler, git: "https://github.com/Torkan/css_bundler.git", runtime: Mix.env() == :dev}
   ]
 end
 ```
@@ -34,6 +34,19 @@ config :css_bundler,
   silent: true (default false)
 ```
 
+## Build/deploy
+
+To build the output-file:
+
+```bash
+mix css_bundler
+```
+
+It's recommended to add your output-file to your `.gitignore`, and then run the mix command
+in your deployment pipeline.
+
+## Usage
+
 The entrypoint-file will be added to the beginning of the output-file, in case you need any
 top-level declearations (like when using Tailwind).
 
@@ -47,12 +60,12 @@ Example `entrypoint.css`:
 
 If you have some styles that only apply to a single LiveView-component, for example
 `lib/myapp_web/live/my_component.ex`, you can colocate its styles in
-`lib/myapp_web/live/my_component.css`, just make sure you add the needed directories in
+`lib/myapp_web/live/my_component.css`, just make sure you add the needed directories inside
 `config.exs`.
 
 Example `lib/myapp_web/live/my_component.ex`:
 
-```elixir
+```html
 def render(assigns) do
   ~H"""
     <div class="mb-4">
@@ -76,6 +89,7 @@ def render(assigns) do
         Searching...
       </div>
       <div id="search-results">
+        <%= @search_results %>
       </div>
     </div>
   """
