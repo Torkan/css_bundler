@@ -7,8 +7,8 @@
 Created in order to be able to write css spread across multiple files when working on a
 Phoenix-project that uses Tailwind[https://github.com/phoenixframework/tailwind].
 
-It basically listens for updates to any css-files specified directories (or sub-directories),
-as well as the entrypoint css-file.
+It basically listens for updates to any css-files within the specified directories
+(or their sub-directories), as well as the entrypoint css-file.
 
 When an update is detected, it simply takes the contents of each found css-file and dumps
 it into the specified output-file.
